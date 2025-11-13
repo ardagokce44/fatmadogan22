@@ -38,6 +38,7 @@
     h1 {
       font-size: 26px;
       margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(255,255,255,0.6);
     }
 
     button {
@@ -53,19 +54,6 @@
 
     button:hover {
       background-color: #00cc66;
-    }
-
-    #password-section {
-      display: none;
-      margin-top: 20px;
-    }
-
-    input {
-      padding: 10px;
-      font-size: 18px;
-      border-radius: 10px;
-      border: none;
-      text-align: center;
     }
 
     #content {
@@ -122,6 +110,7 @@
       max-height: 80%;
       border-radius: 20px;
       border: 5px solid white;
+      transition: transform 0.3s;
     }
 
     .close-btn {
@@ -140,17 +129,15 @@
   </style>
 </head>
 <body>
+  <!-- 🟢 GİRİŞ EKRANI -->
   <div class="overlay" id="agreement">
     <h1>Gamze Hocanın Çocukları</h1>
     <button id="enter">Giriş</button>
-
-    <div id="password-section">
-      <p>Şifreyi gir:</p><br>
-      <input type="password" id="passwordInput" placeholder="Şifre...">
-    </div>
   </div>
 
+  <!-- 🟢 ANA İÇERİK (FOTOĞRAFLAR) -->
   <div id="content">
+    <h1>Gamze Hocanın Çocukları</h1>
     <div class="image-container">
       <img src="fatma.png" alt="Fatma">
       <img src="nisa.png" alt="Nisa">
@@ -158,7 +145,7 @@
     </div>
   </div>
 
-  <!-- 🔥 Fotoğraf büyütme penceresi (modal) -->
+  <!-- 🔥 FOTOĞRAF BÜYÜTME PENCERESİ (MODAL) -->
   <div class="modal" id="modal">
     <span class="close-btn" id="closeBtn">&times;</span>
     <img id="modalImg" src="" alt="Büyük Görsel">
@@ -166,31 +153,19 @@
 
   <script>
     const enterBtn = document.getElementById("enter");
-    const passwordSection = document.getElementById("password-section");
-    const passwordInput = document.getElementById("passwordInput");
-    const content = document.getElementById("content");
     const agreement = document.getElementById("agreement");
+    const content = document.getElementById("content");
     const modal = document.getElementById("modal");
     const modalImg = document.getElementById("modalImg");
     const closeBtn = document.getElementById("closeBtn");
 
+    // 🔹 Giriş butonuna basınca fotoğraflar gelsin
     enterBtn.addEventListener("click", () => {
-      passwordSection.style.display = "block";
-      enterBtn.style.display = "none";
+      agreement.style.display = "none";
+      content.style.display = "block";
     });
 
-    passwordInput.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        if (passwordInput.value === "ardaabi") {
-          agreement.style.display = "none";
-          content.style.display = "block";
-        } else {
-          alert("Yanlış şifre 😎");
-        }
-      }
-    });
-
-    // 🔥 Fotoğraflara tıklayınca büyütme
+    // 🔹 Fotoğraflara tıklanınca büyüt
     document.querySelectorAll(".image-container img").forEach(img => {
       img.addEventListener("click", () => {
         modal.style.display = "flex";
@@ -198,12 +173,12 @@
       });
     });
 
-    // 🔥 Çarpıya basınca kapat
+    // 🔹 Çarpıya basınca kapat
     closeBtn.addEventListener("click", () => {
       modal.style.display = "none";
     });
 
-    // 🔥 Ekranın herhangi yerine tıklayınca da kapat
+    // 🔹 Boş alana tıklayınca kapat
     modal.addEventListener("click", (e) => {
       if (e.target === modal) modal.style.display = "none";
     });
