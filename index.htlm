@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gamze Hocanın Çocukları</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: "Poppins", sans-serif;
+      color: white;
+    }
+
+    body {
+      background: url('background.gif') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 40px 60px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 10px 30px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: #00ff88;
+      color: black;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #00cc66;
+    }
+
+    #password-section {
+      display: none;
+      margin-top: 20px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: none;
+      text-align: center;
+    }
+
+    #content {
+      display: none;
+      text-align: center;
+    }
+
+    .image-container {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .image-container img {
+      width: 180px;
+      height: 180px;
+      border-radius: 20px;
+      animation: rgbBorder 2s linear infinite;
+      border: 5px solid;
+    }
+
+    @keyframes rgbBorder {
+      0% { border-color: red; }
+      33% { border-color: lime; }
+      66% { border-color: blue; }
+      100% { border-color: red; }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay" id="agreement">
+    <h1>Gamze Hocanın Çocukları</h1>
+    <button id="enter">Giriş</button>
+
+    <div id="password-section">
+      <p>Şifreyi gir:</p><br>
+      <input type="password" id="passwordInput" placeholder="Şifre...">
+    </div>
+  </div>
+
+  <div id="content">
+    <div class="image-container">
+      <img src="fatma.png" alt="Fatma">
+      <img src="nisa.png" alt="Nisa">
+      <img src="efsa.png" alt="Efsa">
+    </div>
+  </div>
+
+  <script>
+    const enterBtn = document.getElementById("enter");
+    const passwordSection = document.getElementById("password-section");
+    const passwordInput = document.getElementById("passwordInput");
+    const content = document.getElementById("content");
+    const agreement = document.getElementById("agreement");
+
+    enterBtn.addEventListener("click", () => {
+      passwordSection.style.display = "block";
+      enterBtn.style.display = "none";
+    });
+
+    passwordInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        if (passwordInput.value === "ardaabi") {
+          agreement.style.display = "none";
+          content.style.display = "block";
+        } else {
+          alert("Yanlış şifre 😎");
+        }
+      }
+    });
+  </script>
+</body>
+</html>
